@@ -1,0 +1,9 @@
+sudo: required
+services:
+  - docker
+
+before_install:
+  - docker build -t $TRAVIS_COMMIT -f Dockerfile.dev .
+
+script:
+  - docker run $TRAVIS_COMMIT npm run test -- --coverage
